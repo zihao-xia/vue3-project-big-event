@@ -142,6 +142,7 @@ const handleCommand = async (key) => {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 2px 4px #00000014;
 
     .el-dropdown__box {
       display: flex;
