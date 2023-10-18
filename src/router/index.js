@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useUserStore } from '../stores'
 
 // history模式：createWebHistory 地址栏不带 # 需要支持 HTML5 History API 的浏览器 服务器需对所有路由返回相同index.html
 // hash模式：createHashHistory 地址栏带 # 兼容性更好 服务器不需要特殊配置
@@ -34,6 +35,13 @@ const router = createRouter({
       ]
     }
   ]
+})
+
+router.beforeEach((to) => {
+  const useStore = useUserStore()
+  if (!useStore.token && to.path !== '/login') {
+    return '/login'
+  }
 })
 
 export default router

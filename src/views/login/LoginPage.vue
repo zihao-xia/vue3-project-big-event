@@ -5,7 +5,7 @@ import { ref, watch } from 'vue'
 import { useUserStore } from '@/stores'
 import { useRouter } from 'vue-router'
 
-const isRegister = ref(true)
+const isRegister = ref(false)
 const form = ref()
 const formModel = ref({
   username: '',
