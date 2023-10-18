@@ -10,6 +10,30 @@ import {
   CaretBottom
 } from '@element-plus/icons-vue'
 import avatar from '@/assets/avatar.png'
+import { useUserStore } from '@/stores'
+import { onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+
+const userStore = useUserStore()
+const router = useRouter()
+onMounted(() => {
+  userStore.getUser()
+})
+
+const handleCommand = async (key) => {
+  if (key === 'logout') {
+    await ElMessageBox.confirm('Are you sure you want to log out?', 'Confirm', {
+      type: 'warning',
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No'
+    })
+    userStore.removeToken()
+    userStore.setUser({})
+    router.push('/login')
+  } else {
+    router.push(`/user/${key}`)
+  }
+}
 </script>
 
 <template>
@@ -53,10 +77,15 @@ import avatar from '@/assets/avatar.png'
     </el-aside>
     <el-container>
       <el-header>
-        <div>Username: <strong></strong></div>
-        <el-dropdown placement="bottom-end">
+        <div>
+          User:
+          <strong>{{
+            userStore.user.nickname || userStore.user.username
+          }}</strong>
+        </div>
+        <el-dropdown placement="bottom-end" @command="handleCommand">
           <span class="el-dropdown__box">
-            <el-avatar :src="avatar" />
+            <el-avatar :src="userStore.user.user_pic || avatar" />
             <el-icon><CaretBottom /></el-icon>
           </span>
           <template #dropdown>
