@@ -175,3 +175,25 @@ watch(isRegister, () => {
     </el-col>
   </el-row>
 </template>
+
+<style lang="scss" scoped>
+.login-page {
+  height: 100vh;
+  background-color: #fff;
+  .bg {
+    background: url('@/assets/login_bg.jpg') no-repeat center/cover;
+    border-radius: 0 20px 20px 0;
+  }
+  .form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    user-select: none;
+    .flex {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
+</style>
