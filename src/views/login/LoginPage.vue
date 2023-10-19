@@ -31,7 +31,7 @@ const rules = {
     }
   ],
   repassword: [
-    { required: true, message: 'Please enter password', trigger: 'blur' },
+    { required: true, message: 'Please enter password again', trigger: 'blur' },
     {
       pattern: /^\S{6,15}$/,
       message: 'Password should be 6-15 non-blank characters',
@@ -115,7 +115,7 @@ watch(isRegister, () => {
             placeholder="Enter password again"
           ></el-input>
         </el-form-item>
-        <el-form-item prop="repassword">
+        <el-form-item>
           <el-button @click="register" class="button" type="primary">
             Register
           </el-button>
